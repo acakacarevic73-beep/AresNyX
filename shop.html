@@ -3,256 +3,437 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts</title>
+<title>AresNyX Boxer Shorts Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 <style>
+/* ========================================================= */
+/* DEFINE LUKSUZNE BOJE I FONTOVE */
+/* ========================================================= */
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --color-dark-bg: #121212; 
+    --color-accent-gold: #E6D8B0; /* Glavni luksuzni akcenat */
+    --color-button: #C7574B; /* Prigušena terakota/bordo */
+    --color-text-main: #333333; 
+    --color-light-bg: #fcfcfc; /* Skoro bela */
+}
+
+/* ========================================================= */
+/* OPŠTI STIL */
+/* ========================================================= */
 body {
-  font-family: Arial, sans-serif;
-  margin:0; padding:0;
-  background-color:#f4f4f4;
+    font-family: var(--font-primary);
+    margin:0; 
+    padding:0;
+    background:var(--color-light-bg);
+    color: var(--color-text-main);
 }
+
+/* ========================================================= */
+/* HEADER - Minimalistički i Luksuzan */
+/* ========================================================= */
 header {
-  background-color:#000;
-  color:#FFD700; /* zlatna */
-  padding:20px;
-  text-align:center;
+    background:var(--color-dark-bg);
+    color:#fff;
+    padding:20px 30px; /* Veći padding */
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
-.product-list {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  padding:20px;
-}
-.product {
-  background:#fff;
-  padding:15px;
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  gap:15px;
-  border-radius:5px;
-}
-.product img {
-  width:120px;
-  height:120px;
-  object-fit:cover;
-}
-.product-info {
-  flex:1;
-}
-.product-info h2 {
-  margin:0 0 5px 0;
-  color:#FFD700;
-}
-.product-info p {
-  margin:3px 0;
-}
-.size-options label {
-  margin-right:10px;
-}
-button {
-  cursor:pointer;
-  padding:5px 10px;
-  margin-top:5px;
+header h1 {
+    margin:0;
+    font-size:1.8em; /* Veći font za logo */
+    font-weight: 300; /* TANKA SLOVA */
+    color: var(--color-accent-gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 .cart-icon {
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:#FFD700;
-  color:#000;
-  padding:10px;
-  border-radius:50%;
-  cursor:pointer;
+    cursor:pointer;
+    position:relative;
+    font-weight: 300;
+    color: #DDDDDD; /* Bledo siva za korpu */
+    transition: color 0.3s;
 }
-#cart-modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
+.cart-icon:hover {
+    color: var(--color-accent-gold);
 }
-#cart-content {
-  background:#fff;
-  width:90%;
-  max-width:800px;
-  max-height:90%;
-  overflow:auto;
-  padding:20px;
-  border-radius:10px;
-  position:relative;
+.cart-count {
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:var(--color-button); /* Terakota za brojač */
+    color:white;
+    border-radius:50%;
+    padding:2px 6px;
+    font-size:0.8em;
+    font-weight: 600;
 }
-#cart-content table {
-  width:100%;
-  border-collapse:collapse;
+
+/* ========================================================= */
+/* LISTA PROIZVODA (Tom Ford raspored) */
+/* ========================================================= */
+.products {
+    /* Raspored 2 proizvoda u redu (kao Tom Ford) */
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px; /* Veći razmak (Whitespace) */
+    padding:40px 30px; 
+    max-width: 900px; /* Centriranje liste proizvoda */
+    margin: 0 auto;
 }
-#cart-content th, td {
-  border:1px solid #ccc;
-  padding:5px;
-  text-align:center;
+.product {
+    background:var(--color-light-bg);
+    padding:0; /* Uklanjanje paddinga oko proizvoda */
+    border-radius:0; /* Uklanjanje zaobljenja */
+    text-align:center;
+    transition: box-shadow 0.3s;
 }
-#cart-content button.close-cart {
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:red;
-  color:#fff;
-  border:none;
-  padding:5px 10px;
-  border-radius:5px;
+.product:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Suptilna senka na hover */
 }
-.popup {
-  display:none;
-  position:absolute;
-  background:#fff;
-  border:1px solid #ccc;
-  padding:10px;
-  border-radius:5px;
-  z-index:10;
+.product img {
+    width:100%;
+    height:auto;
+    display:block;
+    margin-bottom: 10px;
+    background-color: #f7f7f7; /* Svetla pozadina za slike */
 }
-.back-button {
-  display:block;
-  margin:20px auto;
-  text-align:center;
-  background:#000;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:5px;
-  text-decoration:none;
+.product h3 {
+    margin:5px 0 2px 0;
+    font-size:1.1em;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+.product p {
+    margin:0 0 5px 0;
+    font-size:0.9em;
+    color: var(--color-text-main);
+    font-weight: 300;
+}
+.product p:last-of-type {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--color-button);
+}
+
+/* KONTROLE KOLIČINE (Sakrivene u Tom Ford stilu) */
+.qty-controls {
+    display:none; /* Sakrivamo kontrole na glavnom listingu (Tom Ford odlaže akciju za PDP) */
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin:5px 0;
+}
+.add-to-cart {
+    background:var(--color-button);
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-radius:0;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.add-to-cart:hover {
+    background-color: #A84236;
+}
+
+/* ========================================================= */
+/* POPUP KORPA */
+/* ========================================================= */
+.cart-popup {
+    /* Stilovi korpe su zadržani, ali sa novim fontovima/bojama */
+    display:none;
+    position:fixed;
+    top:80px;
+    right:30px;
+    background:white;
+    border:1px solid #ccc;
+    width:350px;
+    max-height:450px;
+    overflow:auto;
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    padding:20px;
+}
+.cart-popup h3 {
+    margin-top:0;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.cart-popup table {
+    width:100%;
+    border-collapse:collapse;
+}
+.cart-popup th, .cart-popup td {
+    border-bottom:1px solid #eeeeee;
+    padding:8px 5px;
+    text-align:left;
+    font-weight: 300;
+}
+.cart-popup th {
+    font-weight: 600;
+}
+.cart-popup tfoot td {
+    border-top: 1px solid #ccc;
+    font-weight: 600;
+    padding-top: 10px;
+}
+.close-cart {
+    background:var(--color-button);
+    color:white;
+    border:none;
+    padding:5px 8px;
+    cursor:pointer;
+    float:right;
+    border-radius:2px;
+}
+.cart-popup button[onclick="checkout()"] {
+    background: var(--color-dark-bg);
+    color: var(--color-accent-gold);
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.cart-popup button[onclick="checkout()"]:hover {
+    background: var(--color-text-main);
+}
+
+
+/* RESPONSIVE PODEŠAVANJA (Za mobilni - zadržava Tom Ford raspored) */
+@media (max-width: 600px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* 2 u redu na mobilnom je luksuzni standard */
+        gap: 15px;
+        padding: 20px 10px;
+    }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>AresNyX Boxer Shorts</h1>
+<h1>ARESNYX</h1>
+<div class="cart-icon" onclick="toggleCart()">
+    🛒 KORPA <span class="cart-count" id="cartCount">0</span>
+</div>
 </header>
 
-<div class="product-list" id="product-list">
-  <!-- Proizvodi će se ubaciti kroz JS -->
+<section class="products">
+
+<div class="product" data-name="Boxer Plavi" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder1.jpg" alt="Boxer Plavi">
+<h3>Boxer Plavi</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
 </div>
 
-<div class="cart-icon" id="cart-icon">🛒</div>
-
-<div id="cart-modal">
-  <div id="cart-content">
-    <button class="close-cart" id="close-cart">X</button>
-    <h2>Vaša korpa</h2>
-    <table id="cart-table">
-      <thead>
-        <tr>
-          <th>Proizvod</th>
-          <th>Veličina</th>
-          <th>Količina</th>
-          <th>Cena</th>
-          <th>Vrednost</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <p id="cart-summary"></p>
-    <button id="empty-cart">Isprazni korpu</button>
-    <button id="checkout">Potvrdi porudžbinu</button>
-  </div>
+<div class="product" data-name="Boxer Navi" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder2.jpg" alt="Boxer Navi">
+<h3>Boxer Navi</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
 </div>
 
-<a href="javascript:history.back()" class="back-button">← Vrati se na prethodnu stranu</a>
+<div class="product" data-name="Boxer Siva" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder3.jpg" alt="Boxer Siva">
+<h3>Boxer Siva</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+<div class="product" data-name="Boxer Prugasto Plavo" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder4.jpg" alt="Boxer Prugasto Plavo">
+<h3>Boxer Prugasto Plavo</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+<div class="product" data-name="Boxer Prugasto Sivo" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder5.jpg" alt="Boxer Prugasto Sivo">
+<h3>Boxer Prugasto Sivo</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+<div class="product" data-name="Boxer Prugasto" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder6.jpg" alt="Boxer Prugasto">
+<h3>Boxer Prugasto</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+<div class="product" data-name="Boxer Crna" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder7.jpg" alt="Boxer Crna">
+<h3>Boxer Crna</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+<div class="product" data-name="Boxer Bela" data-price="1300" data-material="100% pamuk">
+<img src="images/placeholder8.jpg" alt="Boxer Bela">
+<h3>Boxer Bela</h3>
+<p>100% pamuk</p>
+<p>1300 RSD</p>
+<div class="qty-controls">
+<button class="dec">-</button>
+<span class="qty">1</span>
+<button class="inc">+</button>
+</div>
+<button class="add-to-cart" style="display:none;">Dodaj u korpu</button>
+</div>
+
+</section>
+
+<div class="cart-popup" id="cartPopup">
+<button class="close-cart" onclick="toggleCart()">X</button>
+<h3>Vaša korpa</h3>
+<table id="cartTable">
+<thead>
+<tr><th>Proizvod</th><th>Količina</th><th>Cena</th></tr>
+</thead>
+<tbody></tbody>
+<tfoot>
+<tr><td colspan="2">Postarina</td><td id="shipping">0</td></tr>
+<tr><td colspan="2">Popust</td><td id="discount">0</td></tr>
+<tr><td colspan="2">Ukupno</td><td id="total">0</td></tr>
+</tfoot>
+</table>
+<button onclick="checkout()">Potvrdi porudžbinu</button>
+</div>
 
 <script>
-// Definisanje proizvoda
-const products = [
-  {id:1,name:"AresNyX Boxer Shorts Blue",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:2,name:"AresNyX Boxer Shorts Navy",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:3,name:"AresNyX Boxer Shorts Grey",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:4,name:"AresNyX Boxer Shorts Striped Blue",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:5,name:"AresNyX Boxer Shorts Striped Grey",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:6,name:"AresNyX Boxer Shorts Striped",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:7,name:"AresNyX Boxer Shorts Black",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-  {id:8,name:"AresNyX Boxer Shorts White",price:1300,material:"100% pamuk",img:"https://via.placeholder.com/120",img2:"https://via.placeholder.com/120?text=2"},
-];
-
 let cart = [];
-
-function renderProducts() {
-  const list = document.getElementById('product-list');
-  products.forEach(p=>{
-    const div = document.createElement('div');
-    div.className='product';
-    div.innerHTML = `
-      <img src="${p.img}" onmouseover="this.src='${p.img2}'" onmouseout="this.src='${p.img}'">
-      <div class="product-info">
-        <h2>${p.name}</h2>
-        <p>${p.material}</p>
-        <div class="size-options">
-          <label><input type="radio" name="size-${p.id}" value="M" checked> M</label>
-          <label><input type="radio" name="size-${p.id}" value="L"> L</label>
-          <label><input type="radio" name="size-${p.id}" value="XL"> XL</label>
-          <label><input type="radio" name="size-${p.id}" value="XXL"> XXL</label>
-        </div>
-        <label>Količina: <input type="number" id="qty-${p.id}" value="1" min="1" style="width:50px"></label>
-        <button onclick="addToCart(${p.id})">Dodaj u korpu</button>
-      </div>
-    `;
-    list.appendChild(div);
-  });
+// Funkcija za prebacivanje prikaza korpe
+function toggleCart(){
+    const popup = document.getElementById('cartPopup');
+    popup.style.display = popup.style.display==='block'?'none':'block';
+    updateCart();
 }
 
-function addToCart(id){
-  const product = products.find(p=>p.id===id);
-  const size = document.querySelector(`input[name="size-${id}"]:checked`).value;
-  const qty = parseInt(document.getElementById(`qty-${id}`).value);
-  // Provera da li postoji već u korpi sa istom veličinom
-  const existing = cart.find(c=>c.id===id && c.size===size);
-  if(existing){
-    existing.qty = qty; // poslednje stanje
-  } else {
-    cart.push({...product,qty,size});
-  }
-  renderCart();
+// Funkcija za osvežavanje sadržaja korpe
+function updateCart(){
+    const tbody = document.querySelector('#cartTable tbody');
+    tbody.innerHTML='';
+    let total=0;
+    cart.forEach(item=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td>${item.name}</td><td>${item.qty}</td><td>${item.price*item.qty} RSD</td>`;
+        tbody.appendChild(tr);
+        total+=item.price*item.qty;
+    });
+
+    // Računanje poštarine (besplatna iznad 5 komada)
+    const totalItems = cart.reduce((sum,i)=>sum+i.qty,0);
+    let shipping = totalItems >= 5 ? 0 : 400;
+    
+    // Računanje popusta (10% za 7 ili više komada)
+    let discount = totalItems >= 7 ? total * 0.1 : 0;
+    discount = Math.round(discount); // Zaokruživanje
+
+    document.getElementById('shipping').innerText = shipping + ' RSD';
+    document.getElementById('discount').innerText = discount + ' RSD';
+    document.getElementById('total').innerText = (total + shipping - discount) + ' RSD';
+    document.getElementById('cartCount').innerText = totalItems;
 }
 
-function renderCart(){
-  const tbody = document.querySelector('#cart-table tbody');
-  tbody.innerHTML='';
-  let total=0;
-  cart.forEach(item=>{
-    let value = item.price*item.qty;
-    total+=value;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${item.name}</td><td>${item.size}</td><td>${item.qty}</td><td>${item.price}</td><td>${value}</td>`;
-    tbody.appendChild(tr);
-  });
-  // Pravila poštarina i popust
-  let shipping = 400;
-  let discount = 0;
-  const totalQty = cart.reduce((a,b)=>a+b.qty,0);
-  if(totalQty>=5) shipping=0;
-  if(totalQty>=7){
-    discount = 0.1;
-    total = total*(1-discount);
-    shipping=0;
-  }
-  document.getElementById('cart-summary').innerText=`Ukupno: ${total} RSD | Poštarina: ${shipping} RSD ${discount>0? "| Popust 10%":""}`;
-  document.getElementById('cart-modal').style.display='flex';
+// Logika za 'Dodaj u korpu' (ostavljena je nevidljiva na glavnoj stranici)
+document.querySelectorAll('.add-to-cart').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const product = e.target.closest('.product');
+        const name = product.dataset.name;
+        const price = parseFloat(product.dataset.price);
+        // Očitavanje količine sa kontrole (iako je nevidljiva)
+        let qty = parseInt(product.querySelector('.qty').innerText); 
+
+        let cartItem = cart.find(i=>i.name===name);
+        
+        // Logika: Ako je u korpi, dodajemo na postojeću količinu
+        if(cartItem){
+            cartItem.qty += qty; 
+        } else {
+            cart.push({name:name, price:price, qty:qty});
+        }
+
+        // Resetovanje brojača količine na 1 nakon dodavanja
+        product.querySelector('.qty').innerText = 1;
+
+        updateCart();
+    });
+});
+
+// Logika za povećanje količine
+document.querySelectorAll('.inc').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const qtyEl = e.target.closest('.qty-controls').querySelector('.qty');
+        qtyEl.innerText = parseInt(qtyEl.innerText)+1;
+    });
+});
+// Logika za smanjenje količine
+document.querySelectorAll('.dec').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const qtyEl = e.target.closest('.qty-controls').querySelector('.qty');
+        let val = parseInt(qtyEl.innerText)-1;
+        qtyEl.innerText = val<1?1:val; // Minimalna količina je 1
+    });
+});
+
+function checkout(){
+    // Ovde bi išla složenija provera i slanje podataka na server
+    alert("Porudžbina potvrđena! Hvala Vam na kupovini.");
 }
-
-document.getElementById('cart-icon').addEventListener('click',()=>{
-  document.getElementById('cart-modal').style.display='flex';
-});
-document.getElementById('close-cart').addEventListener('click',()=>{
-  document.getElementById('cart-modal').style.display='none';
-});
-document.getElementById('empty-cart').addEventListener('click',()=>{
-  cart=[];
-  renderCart();
-});
-document.getElementById('checkout').addEventListener('click',()=>{
-  alert("Porudžbina potvrđena! (Ovde ide integracija EmailJS ili server)");
-});
-
-renderProducts();
 </script>
+
 </body>
 </html>
+
