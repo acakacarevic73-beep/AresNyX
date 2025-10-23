@@ -3,73 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Shop</title>
+<title>AresNyX Boxer Shorts</title>
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
-h1 { text-align:center; margin:20px 0; }
-.products { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; padding:20px; }
-.product { background:#fff; padding:15px; width:250px; border:1px solid #ccc; border-radius:5px; text-align:center; }
-.product img { width:100%; height:auto; }
-button { padding:10px 20px; margin-top:10px; cursor:pointer; background:#ff4d4d; color:#fff; border:none; border-radius:5px; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f8f8; }
+header { background:#000; color:#bfa14b; padding:40px 20px; text-align:center; }
+header h1 { margin:0; font-size:2.5em; }
+section { padding:40px 20px; }
+.products { display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; }
+.product { flex:1 1 calc(50% - 20px); background:#fff; border-radius:12px; padding:20px; text-align:center; }
+.product img { width:100%; max-height:200px; object-fit:cover; border-radius:12px; background:#e0e0e0; }
+.product h3 { margin:15px 0 5px; }
+.product p { margin:5px 0; }
+button { background-color:#bfa14b; color:#fff; border:none; padding:8px 15px; border-radius:8px; cursor:pointer; margin-top:5px; }
+.quantity-control { display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0; }
+.quantity-control button { width:30px; height:30px; padding:0; font-size:18px; }
+.cart { margin-top:40px; background:#fff; padding:20px; border-radius:12px; }
+.cart table { width:100%; border-collapse:collapse; }
+.cart th, .cart td { border:1px solid #ddd; padding:10px; text-align:center; }
+.cart th { background:#f0f0f0; }
+.cart .total { font-weight:bold; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-(function(){emailjs.init("WKV419-gz6OQWSgRJ");})();
-function orderProduct(name, price){
-  const quantity = 1;
-  const shipping = 400;
-  const total = price + shipping;
-  const buyerEmail = prompt("Unesi svoj email:");
-  const buyerName = prompt("Unesi ime i prezime:");
-  const buyerAddress = prompt("Unesi adresu:");
-  const buyerPostal = prompt("Unesi poštanski broj:");
-
-  const templateParamsSeller = {
-    to_name: "Alex",
-    product_name: name,
-    quantity: quantity,
-    total_price: total,
-    shipping: shipping,
-    buyer_name: buyerName,
-    buyer_email: buyerEmail,
-    buyer_address: buyerAddress,
-    buyer_postal: buyerPostal
-  };
-
-  const templateParamsBuyer = {
-    to_name: buyerName,
-    product_name: name,
-    quantity: quantity,
-    total_price: total,
-    shipping: shipping
-  };
-
-  emailjs.send("service_rxj533m","template_5o6etkn",templateParamsSeller)
-  .then(function(){ alert("Porudžbina poslata!"); });
-
-  emailjs.send("service_rxj533m","template_u8dh76a",templateParamsBuyer)
-  .then(function(){ console.log("Kupac obavešten."); });
-}
-</script>
 </head>
 <body>
 
-<h1>AresNyX Shop</h1>
+<header>
+  <h1>AresNyX Boxer Shorts</h1>
+  <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
+</header>
 
-<div class="products">
-  <div class="product">
-    <img src="images/boxer1a.jpg" alt="Plava">
-    <img src="images/boxer1b.jpg" alt="Plava">
-    <h3>Plava</h3>
+<section class="products">
+  <!-- Proizvodi -->
+  <div class="product" data-name="AresNyX Boxer Blue" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 1">
+    <h3>AresNyX Boxer Blue</h3>
     <p>Materijal: 100% pamuk</p>
     <p>Cena: 1300 RSD</p>
-    <button onclick="orderProduct('Plava',1300)">Poruči</button>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
   </div>
 
-  <div class="product">
-    <img src="images/boxer2a.jpg" alt="Navi">
-    <img src="images/boxer2b.jpg" alt="Navi">
-    <h3>Navi</h3>
+  <div class="product" data-name="AresNyX Boxer Navy" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 2">
+    <h3>AresNyX Boxer Navy</h3>
     <p>Materijal: 100% pamuk</p>
     <p>Cena: 1300 RSD</p>
-    <button onclick="orderProduct('Navi',1300)">Poruči</button>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Grey" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 3">
+    <h3>AresNyX Boxer Grey</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Striped Blue" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 4">
+    <h3>AresNyX Boxer Striped Blue</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Striped Grey" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 5">
+    <h3>AresNyX Boxer Striped Grey</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Striped" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 6">
+    <h3>AresNyX Boxer Striped</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Extra" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 7">
+    <h3>AresNyX Boxer Extra</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+  <div class="product" data-name="AresNyX Boxer Extra 2" data-price="1300" data-material="100% pamuk">
+    <img src="" alt="Placeholder 8">
+    <h3>AresNyX Boxer Extra 2</h3>
+    <p>Materijal: 100% pamuk</p>
+    <p>Cena: 1300 RSD</p>
+    <div class="quantity-control">
+      <button class="dec">-</button>
+      <span class="qty">1</span>
+      <button class="inc">+</button>
+    </div>
+    <button class="add-to-cart">Dodaj u korpu</button>
+  </div>
+
+</section>
+
+<section class="cart">
+  <h2>Korpa</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Proizvod</th>
+        <th>Materijal</th>
+        <th>Cena</th>
+        <th>Količina</th>
+        <th>Ukupno</th>
+        <th>Ukloni</th>
+      </tr>
+    </thead>
+    <tbody id="cart-items">
+      <tr><td colspan="6">Korpa je prazna</td></tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" style="text-align:right;">Postarina:</td>
+        <td colspan="2" id="shipping">0 RSD</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:right;">Popust:</td>
+        <td colspan="2" id="discount">0 RSD</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:right;" class="total">Ukupno:</td>
+        <td colspan="2" class="
