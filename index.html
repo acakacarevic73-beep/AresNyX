@@ -12,7 +12,7 @@
 :root {
     --font-primary: 'Montserrat', sans-serif;
     --color-dark-bg: #121212; /* Tamnija crna za luksuz */
-    --color-accent-gold: #E6D8B0; /* Luksuzna zlatno-bež za naslove */
+    --color-accent-gold: #D4AF37; /* NOVO: Bogatija zlatna za bolji kontrast */
     --color-button: #C7574B; /* Prigušena terakota/bordo */
     --color-text-main: #333333; /* Tamno siva umesto čiste crne */
     --color-light-bg: #f7f7f7; /* Svetla siva pozadina */
@@ -49,13 +49,19 @@ header {
 /* AresNyX Boxer Shorts */
 header h1 { 
     font-size: 44px; /* Veliki naslov */
-    font-weight: 300; /* TANKA SLOVA ZA PREFINJENOST */
+    font-weight: 300; /* Tanka slova za eleganciju */
     margin-bottom: 5px; 
     margin-top: 0;
-    color: var(--color-accent-gold); /* ZLATNI AKCENAT */
-    letter-spacing: 3px; /* Širi razmak za eleganciju */
+    color: var(--color-accent-gold); /* KORIŠTENJE NOVE ZLATNE */
+    letter-spacing: 3px; 
     text-transform: uppercase;
 }
+/* Klasa za podebljanje samo imena brenda (AresNyX) */
+.brand-emphasis {
+    font-weight: 600; 
+}
+
+
 /* Opis ispod naslova */
 header p { 
     font-size: 16px; 
@@ -200,12 +206,12 @@ h2 {
     justify-content: center; 
     align-items: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    order: 1; /* Podrazumevano slika levo */
+    order: 1; 
 }
 .blog-content {
     flex: 1 1 45%; 
     padding: 10px 10px 10px 40px; 
-    order: 2; /* Podrazumevano tekst desno */
+    order: 2; 
 }
 /* Naizmenično premeštanje kolona za estetski izgled */
 .blog-topic-item:nth-child(even) .blog-image-container {
@@ -283,7 +289,7 @@ footer button:hover {
 <body>
 
 <header>
-  <h1>AresNyX Boxer Shorts</h1>
+  <h1><span class="brand-emphasis">AresNyX</span> Boxer Shorts</h1>
   <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
   <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
 </header>
@@ -379,4 +385,3 @@ footer button:hover {
 
 </body>
 </html>
-      
