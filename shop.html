@@ -3,38 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts</title>
+<title>AresNyX Boxer Shorts - Shop</title>
 <style>
 body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f8f8; }
-header { background:#000; color:#bfa14b; padding:40px 20px; text-align:center; }
-header h1 { margin:0; font-size:2.5em; }
-section { padding:40px 20px; }
-.products { display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; }
-.product { flex:1 1 calc(50% - 20px); background:#fff; border-radius:12px; padding:20px; text-align:center; }
+header { background:#000; color:#bfa14b; padding:20px; display:flex; justify-content:space-between; align-items:center; }
+header h1 { margin:0; font-size:1.8em; }
+header .icons { display:flex; gap:20px; align-items:center; }
+header .cart-icon { cursor:pointer; position:relative; }
+header .cart-count { position:absolute; top:-10px; right:-10px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:0.8em; }
+
+button { background-color:#bfa14b; color:#fff; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; }
+.products { display:flex; flex-wrap:wrap; gap:20px; padding:20px; }
+.product { flex:1 1 calc(50% - 20px); background:#fff; border-radius:12px; padding:15px; text-align:center; }
 .product img { width:100%; max-height:200px; object-fit:cover; border-radius:12px; background:#e0e0e0; }
-.product h3 { margin:15px 0 5px; }
-.product p { margin:5px 0; }
-button { background-color:#bfa14b; color:#fff; border:none; padding:8px 15px; border-radius:8px; cursor:pointer; margin-top:5px; }
 .quantity-control { display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0; }
-.quantity-control button { width:30px; height:30px; padding:0; font-size:18px; }
-.cart { margin-top:40px; background:#fff; padding:20px; border-radius:12px; }
-.cart table { width:100%; border-collapse:collapse; }
-.cart th, .cart td { border:1px solid #ddd; padding:10px; text-align:center; }
-.cart th { background:#f0f0f0; }
-.cart .total { font-weight:bold; }
+.quantity-control button { width:30px; height:30px; font-size:18px; }
+
+.cart-modal { position:fixed; top:0; right:-100%; width:350px; height:100%; background:#fff; box-shadow:-3px 0 10px rgba(0,0,0,0.3); transition:0.3s; padding:20px; overflow-y:auto; z-index:1000; }
+.cart-modal.open { right:0; }
+.cart-modal h2 { margin-top:0; }
+.cart-modal table { width:100%; border-collapse:collapse; }
+.cart-modal th, .cart-modal td { border:1px solid #ddd; padding:6px; text-align:center; }
+.cart-modal th { background:#f0f0f0; }
+.cart-modal .total { font-weight:bold; }
+.close-cart { display:block; text-align:right; margin-bottom:10px; cursor:pointer; color:#bfa14b; font-weight:bold; }
+.back-button { background:#444; margin-left:20px; padding:5px 10px; border-radius:6px; }
 </style>
 </head>
 <body>
 
 <header>
+  <button class="back-button" onclick="history.back()">Vrati se</button>
   <h1>AresNyX Boxer Shorts</h1>
-  <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
+  <div class="icons">
+    <div class="cart-icon" id="cart-toggle">
+      🛒 <span class="cart-count" id="cart-count">0</span>
+    </div>
+  </div>
 </header>
 
 <section class="products">
-  <!-- Proizvodi -->
+  <!-- Primer proizvoda -->
   <div class="product" data-name="AresNyX Boxer Blue" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 1">
+    <img src="" alt="Placeholder">
     <h3>AresNyX Boxer Blue</h3>
     <p>Materijal: 100% pamuk</p>
     <p>Cena: 1300 RSD</p>
@@ -47,7 +58,7 @@ button { background-color:#bfa14b; color:#fff; border:none; padding:8px 15px; bo
   </div>
 
   <div class="product" data-name="AresNyX Boxer Navy" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 2">
+    <img src="" alt="Placeholder">
     <h3>AresNyX Boxer Navy</h3>
     <p>Materijal: 100% pamuk</p>
     <p>Cena: 1300 RSD</p>
@@ -59,87 +70,11 @@ button { background-color:#bfa14b; color:#fff; border:none; padding:8px 15px; bo
     <button class="add-to-cart">Dodaj u korpu</button>
   </div>
 
-  <div class="product" data-name="AresNyX Boxer Grey" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 3">
-    <h3>AresNyX Boxer Grey</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
-  <div class="product" data-name="AresNyX Boxer Striped Blue" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 4">
-    <h3>AresNyX Boxer Striped Blue</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
-  <div class="product" data-name="AresNyX Boxer Striped Grey" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 5">
-    <h3>AresNyX Boxer Striped Grey</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
-  <div class="product" data-name="AresNyX Boxer Striped" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 6">
-    <h3>AresNyX Boxer Striped</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
-  <div class="product" data-name="AresNyX Boxer Extra" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 7">
-    <h3>AresNyX Boxer Extra</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
-  <div class="product" data-name="AresNyX Boxer Extra 2" data-price="1300" data-material="100% pamuk">
-    <img src="" alt="Placeholder 8">
-    <h3>AresNyX Boxer Extra 2</h3>
-    <p>Materijal: 100% pamuk</p>
-    <p>Cena: 1300 RSD</p>
-    <div class="quantity-control">
-      <button class="dec">-</button>
-      <span class="qty">1</span>
-      <button class="inc">+</button>
-    </div>
-    <button class="add-to-cart">Dodaj u korpu</button>
-  </div>
-
+  <!-- Dodaj još proizvoda po istom principu -->
 </section>
 
-<section class="cart">
+<div class="cart-modal" id="cart-modal">
+  <span class="close-cart" id="close-cart">✖ Zatvori</span>
   <h2>Korpa</h2>
   <table>
     <thead>
@@ -166,4 +101,91 @@ button { background-color:#bfa14b; color:#fff; border:none; padding:8px 15px; bo
       </tr>
       <tr>
         <td colspan="4" style="text-align:right;" class="total">Ukupno:</td>
-        <td colspan="2" class="
+        <td colspan="2" class="total-amount">0 RSD</td>
+      </tr>
+    </tfoot>
+  </table>
+  <button id="checkout">Potvrdi porudžbinu</button>
+</div>
+
+<script>
+// Korpa
+let cart = [];
+
+// Otvaranje/zatvaranje korpe
+const cartToggle = document.getElementById('cart-toggle');
+const cartModal = document.getElementById('cart-modal');
+const closeCart = document.getElementById('close-cart');
+cartToggle.addEventListener('click', () => cartModal.classList.toggle('open'));
+closeCart.addEventListener('click', () => cartModal.classList.remove('open'));
+
+// Render korpe
+function renderCart() {
+  const tbody = document.getElementById('cart-items');
+  tbody.innerHTML = '';
+  if(cart.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6">Korpa je prazna</td></tr>';
+  } else {
+    let subtotal = 0;
+    let totalQty = 0;
+    cart.forEach((item,index)=>{
+      const totalItem = item.price * item.qty;
+      subtotal += totalItem;
+      totalQty += item.qty;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.material}</td>
+        <td>${item.price}</td>
+        <td>${item.qty}</td>
+        <td>${totalItem}</td>
+        <td><button onclick="removeItem(${index})">✖</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Popust i postarina
+    let shipping = 400;
+    let discount = 0;
+    let total = subtotal;
+    if(totalQty >= 5 && totalQty <7) { shipping = 0; total += shipping; }
+    if(totalQty >=7) { shipping = 0; discount = subtotal*0.10; total = subtotal - discount; }
+
+    document.getElementById('shipping').innerText = shipping + ' RSD';
+    document.getElementById('discount').innerText = discount + ' RSD';
+    document.querySelector('.total-amount').innerText = total + ' RSD';
+
+    document.getElementById('cart-count').innerText = totalQty;
+  }
+}
+
+// Dodaj u korpu
+document.querySelectorAll('.add-to-cart').forEach((btn,index)=>{
+  btn.addEventListener('click',()=>{
+    const product = btn.parentElement;
+    const name = product.dataset.name;
+    const price = parseFloat(product.dataset.price);
+    const material = product.dataset.material;
+    const qty = parseInt(product.querySelector('.qty').innerText);
+    const existing = cart.find(i=>i.name===name);
+    if(existing){ existing.qty += qty; } 
+    else { cart.push({name,price,material,qty}); }
+    renderCart();
+  });
+});
+
+// Dugmad +/-
+document.querySelectorAll('.quantity-control').forEach(div=>{
+  const inc = div.querySelector('.inc');
+  const dec = div.querySelector('.dec');
+  const qtySpan = div.querySelector('.qty');
+  inc.addEventListener('click',()=>{ qtySpan.innerText = parseInt(qtySpan.innerText)+1; });
+  dec.addEventListener('click',()=>{ if(parseInt(qtySpan.innerText)>1) qtySpan.innerText = parseInt(qtySpan.innerText)-1; });
+});
+
+// Ukloni stavku
+function removeItem(index){ cart.splice(index,1); renderCart(); }
+</script>
+
+</body>
+</html>
